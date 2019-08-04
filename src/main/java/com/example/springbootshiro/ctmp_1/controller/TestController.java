@@ -116,6 +116,19 @@ public class TestController {
     
     
     
+    @RequestMapping("haha")
+    @ResponseBody
+    public String haha(){
+
+        Map<String, String> user = userMapper.findUser("root1","222333");
+        String name = user.get("name");
+        String password = user.get("password");
+        System.out.println(name+password);
+
+        JSONObject jsonObject = JSONObject.fromObject(user);
+        return jsonObject.toString();
+    }
+    
 
     /**
      * 获取当前时间

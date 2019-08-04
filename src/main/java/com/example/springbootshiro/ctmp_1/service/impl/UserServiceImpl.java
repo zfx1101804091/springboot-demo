@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Override
     public int findUser(String username, String password) {
-       int flag =  userMapper.findUser(username,password);
+       int flag =  userMapper.findUser1(username,password);
         return flag;
     }
 }

@@ -2,7 +2,6 @@ package com.example.springbootshiro.shiro;
 
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,10 +39,16 @@ public class ShiroConfig {
 
         Map<String, String> filterMap = new LinkedHashMap<>();
         /*filterMap.put("/add","authc");
-        filterMap.put("/update","authc");*/
+        filterMap.put("/update","authc");
         filterMap.put("/usertest/test1","anon");
-        filterMap.put("/usertest/test2","anon");
+        filterMap.put("/usertest/test2","anon");*/
+        
         //filterMap.put("/usertest/*","authc");//设置映射路径为/usertest/下的都必须登陆才可以访问
+
+        //放行loginshiro.html
+        filterMap.put("/usertest/login","anon");
+        filterMap.put("/usertest/*","authc");
+        
         //修改调整的登陆界面（因为authc下，默认跳转到login.jsp）
         shiroFilterFactoryBean.setLoginUrl("/usertest/toLogin");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);

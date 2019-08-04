@@ -9,9 +9,11 @@ import java.util.Map;
 
 public interface UserMapper {
 
-    int findUser(@Param("username")String username, @Param("password") String password);
+    Map<String,String> findUser(@Param("username")String username, @Param("password") String password);
     
     int insertUser1(Map<String,String> map);
 
     String insert(@Param("jsonObject") String jsonObject);
+
+    int findUser1(String username, String password);
 }
