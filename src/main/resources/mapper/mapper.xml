@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.springbootshiro.ctmp_1.mapper.UserMapper">
+
+  
+    <insert id="insertUser1" parameterType="java.util.Map">
+		insert into user(id,name,password,phone,Email_a,k_time,Administrator_a,k_state) 
+		values(null ,#{name },#{password},#{phone},#{Email_a},current_timestamp ,#{Administrator_a},2)
+	</insert>
+
+    <select id="findUser" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) from user1 where username = #{username} and password = #{password}
+	</select>
+
+
+	<select id="insert" parameterType="java.lang.String" resultType="java.lang.String">
+		call insert_user(#{jsonObject})
+	</select>
+</mapper>

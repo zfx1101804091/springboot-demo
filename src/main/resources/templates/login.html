@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="login_box">
+    <ul class="reg-box">
+        <li>
+            <label>账 号</label>
+            <input id="Account" type="text" name="username" placeholder="请输入您的账号" class="account" maxlength="11"/>
+            <span class="error error5"></span>
+        </li>
+        <li>
+            <label>密 码</label>
+            <input id="Password" type="password" name="password" class="admin_pwd" placeholder="请输入密码"/>
+            <span class="error error6"></span>
+        </li>
+        <li>
+            <label>验证码</label><input id="Capcode" type="text" name="captchaCode" class="sradd photokey"
+                                     placeholder="请输入验证码"/>
+            <img src="captchaCode">
+            <div class="tip">
+                <span class="error error7"></span>
+                <a>看不清，换一张</a>
+            </div>
+
+        </li>
+    </ul>
+    <div class="sub">
+        <input type="button" value="立即登录"/>
+    </div>
+</div>
+
+</body>
+</html>

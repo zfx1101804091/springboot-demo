@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>测试thymeleaf</title>
+</head>
+<body>
+    <div>
+       姓名： <tb th:text="${name}"></tb><br>
+       年龄： <tb th:text="${age}"></tb><br>
+       性别： <tb th:text="${sex}"></tb>
+    </div>
+    
+    <form id="ff" action="/usertest/test2">
+        姓名：<input type="text" name="username">
+        密码：<input type="text" name="password">
+        <input type="submit" value="提交表单">
+    </form>
+    <hr />
+    进入用户添加功能：<a href="/usertest/add">用户添加</a>
+    进入用户更新功能：<a href="/usertest/update">用户更新</a>
+</body>
+</html>

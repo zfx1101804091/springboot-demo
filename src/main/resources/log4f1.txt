@@ -1,0 +1,36 @@
+log4j.rootLogger=ERROR
+log4j.logger.com.example.springbootshiro=DEBUG,stdout,A1
+
+
+
+
+### direct log messages to stdout ###
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p [%t] [%c]->[%F]:%L - %m%n
+
+
+### appender.A1输出到日志文件 ### 
+log4j.appender.A1=org.apache.log4j.DailyRollingFileAppender 
+log4j.appender.A1.File=/var/lib/zh/logs/console/console 
+##注意上面日志文件相对应用根目录路径的写法 
+log4j.appender.A1.DatePattern='.'yyyy-MM-dd'.log' 
+log4j.appender.A1.Append=true 
+## 输出DEBUG级别以上的日志 
+log4j.appender.A1.Threshold=DEBUG 
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout 
+#log4j.appender.A1.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss}: %-4r [%t] ( %F,%L ) - %m%n
+log4j.appender.A1.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss:SSS} [%t] %-5p %c(line-%L) %-4r %x - %m%n
+
+
+### controller###
+log4j.logger.com.example.springbootshiro.controller= DEBUG, cameraLcdset
+
+log4j.appender.cameraLcdset=com.bluecardsoft.park.comutil.utils.MyDailyRollingFileAppender
+log4j.appender.cameraLcdset.File=/var/lib/zh/logs/cameraLcdset/cameraLcdset
+log4j.appender.cameraLcdset.DatePattern='.'yyyyMMdd_HH'.zip'
+log4j.appender.cameraLcdset.Append = true
+log4j.appender.ticket.Encoding = UTF-8 
+log4j.appender.cameraLcdset.layout=org.apache.log4j.PatternLayout
+log4j.appender.cameraLcdset.layout.ConversionPattern=%d{HH\:mm\:ss.SSS} %t - %m%n
