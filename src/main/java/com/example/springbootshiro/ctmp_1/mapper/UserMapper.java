@@ -1,12 +1,11 @@
 package com.example.springbootshiro.ctmp_1.mapper;
 
-import net.sf.json.JSONObject;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
-
+@Resource
 public interface UserMapper {
 
     Map<String,String> findUser(@Param("username")String username, @Param("password") String password);

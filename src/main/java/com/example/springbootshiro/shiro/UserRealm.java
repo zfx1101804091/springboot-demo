@@ -32,7 +32,7 @@ public class UserRealm extends AuthorizingRealm {
      * @throws AuthenticationException
      */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) {
         System.out.println("执行认证逻辑");
 
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
@@ -40,9 +40,7 @@ public class UserRealm extends AuthorizingRealm {
         char[] password = token.getPassword();
 
         Map<String,String> map = userMapper.findUser(username, String.valueOf(password));
-
-       
-
+        
         //1.去查数据库看用户是否存在--判断用户名
         if(!map.get("name").equals(username)){
             //用户名不存在
@@ -50,5 +48,8 @@ public class UserRealm extends AuthorizingRealm {
         }
         //2.判断密码(第1，3参数是返回给subject.login(token);)
         return new SimpleAuthenticationInfo("",map.get("password"),"");
+        
+      
+			
     }
 }
