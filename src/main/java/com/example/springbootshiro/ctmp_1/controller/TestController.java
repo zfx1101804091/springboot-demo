@@ -52,6 +52,7 @@ public class TestController {
         String Administrator_a = request.getParameter("Administrator_a");
         String k_time = getStringDate();
         String k_state = "1";
+        
 
         HashMap<String, String> map = new HashMap<>();
         map.put("name",name);
