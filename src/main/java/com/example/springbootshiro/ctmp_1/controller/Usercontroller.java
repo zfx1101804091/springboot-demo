@@ -1,10 +1,10 @@
 package com.example.springbootshiro.ctmp_1.controller;
 
 import com.example.springbootshiro.ctmp_1.service.UserService;
-import com.example.springbootshiro.utils.UsernamePasswordToken;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,17 +21,7 @@ public class Usercontroller {
     
     @Autowired
     private UserService userService;
-
-    /**
-     * 测试
-     * @return
-     */
-    @RequestMapping("/he")
-    @ResponseBody
-    public String hello(){
-        System.out.println("hello");
-        return "ok";
-    }
+    
 
 
     /**
@@ -39,10 +29,10 @@ public class Usercontroller {
      * @param model
      * @return
      */
-    @RequestMapping("/test1")
+    @RequestMapping("/test")
     public String testThymeleaf(Model model){
         //把数据存入model
-        model.addAttribute("name","传智播客");
+        model.addAttribute("name","郑泽凯");
         model.addAttribute("age","24");
         model.addAttribute("sex","男");
         //返回一个测试页面test.html
@@ -64,6 +54,12 @@ public class Usercontroller {
 
         return "loginshiro";
     }
+
+    @RequestMapping("unAuth")
+    public String unAuth(){
+
+        return "/user/noAuth";
+    }
     
     /*
      * 功能描述: <br>
@@ -74,13 +70,13 @@ public class Usercontroller {
      * @Date: 2019/8/4 0004 22:36
      */
     @RequestMapping(value = "login",method = RequestMethod.POST)
-    public String login(String name,String password,String captcha,Model model){
+    public String login(String name,String password,Model model){
         //使用shiro编写认证操作
         
         //1.获取Subject
         Subject subject = SecurityUtils.getSubject();
         //2.封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(name, password,captcha);
+        UsernamePasswordToken token = new UsernamePasswordToken(name, password);
         //3.执行登陆方法
         try {
             subject.login(token);//会直接执行UserRealm里的认证逻辑
@@ -94,7 +90,7 @@ public class Usercontroller {
             return "loginshiro";
         }catch (IncorrectCredentialsException e){
             //这个异常是登陆失败：密码错误
-            model.addAttribute("msg","用户名不存在");
+            model.addAttribute("msg","密码错误");
             return "loginshiro";
         }/*catch (AuthenticationException e) {
             model.addAttribute("msg","其他的登录错误");

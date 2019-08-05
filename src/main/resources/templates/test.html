@@ -17,7 +17,14 @@
         <input type="submit" value="提交表单">
     </form>
     <hr />
-    进入用户添加功能：<a href="/usertest/add">用户添加</a>
-    进入用户更新功能：<a href="/usertest/update">用户更新</a>
+    <div shiro:hasPermission="user:add">
+        进入用户添加功能：<a href="/usertest/add" style="color: #df0000"><strong>用户添加</strong></a><br>
+    </div>
+
+    <div shiro:hasPermission="user:update">
+        进入用户更新功能：<a href="/usertest/update" style="color: #df0000"><strong>用户更新</strong></a>
+    </div>
+
+    <a href="/usertest/toLogin">登陆</a>
 </body>
 </html>

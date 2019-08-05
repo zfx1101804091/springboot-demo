@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50724
 File Encoding         : 65001
 
-Date: 2019-08-04 16:05:53
+Date: 2019-08-06 00:00:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `phone` (`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -47,15 +47,17 @@ INSERT INTO `user` VALUES ('113', 'xiaomix2iao', '222333', '1111121123', '333333
 INSERT INTO `user` VALUES ('114', 'xiaomixiaott', '222333', '1111112123', '3333333', '2019-08-03 18:16:52', '66', '2');
 INSERT INTO `user` VALUES ('115', 'zhangsan11121q', '1', '11112231111', '1', '2019-08-04 12:31:54', '1', '2');
 INSERT INTO `user` VALUES ('116', 'zhangsan141', '1', '11111114111', '1', '2019-08-04 12:44:58', '222', '2');
+INSERT INTO `user` VALUES ('117', 'zhengfengxiang', '22222', '13245678763', '1875586562@qq.com', '2019-08-04 20:47:43', '老师', '2');
 
 -- ----------------------------
 -- Table structure for user1
 -- ----------------------------
 DROP TABLE IF EXISTS `user1`;
 CREATE TABLE `user1` (
-  `id` int(255) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `id` int(50) NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `perms` varchar(50) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -63,7 +65,8 @@ CREATE TABLE `user1` (
 -- ----------------------------
 -- Records of user1
 -- ----------------------------
-INSERT INTO `user1` VALUES ('1', 'zhangsan', '123', '2019-07-31 07:20:02');
+INSERT INTO `user1` VALUES ('1', 'jack', '123', 'user:add', '2019-07-31 07:20:02');
+INSERT INTO `user1` VALUES ('2', 'rose', '234', 'user:update', '2019-08-05 22:38:43');
 
 -- ----------------------------
 -- Procedure structure for insert_user
@@ -104,6 +107,25 @@ SELECT REPLACE(JSON_EXTRACT(p_json,"$.name"),'"','')
 	end if;
 
 	SELECT $result;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for query_user
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `query_user`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `query_user`(IN `t_username` varchar(255),IN `t_password` varchar(255))
+BEGIN
+	#Routine body goes here...
+
+	#查询用户是否存在
+
+	#SELECT COUNT(1) into @num from `user` where `name`=t_username and `password` = t_password;
+	SELECT * from `user` where `name`=t_username and `password` = t_password ;
+	#JSON_OBJECT(@json);
+	#SELECT @json;
 END
 ;;
 DELIMITER ;

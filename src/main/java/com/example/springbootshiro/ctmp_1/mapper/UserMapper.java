@@ -1,5 +1,6 @@
 package com.example.springbootshiro.ctmp_1.mapper;
 
+import com.example.springbootshiro.ctmp_1.domain.User;
 import org.apache.ibatis.annotations.Param;
 
 import javax.annotation.Resource;
@@ -15,4 +16,8 @@ public interface UserMapper {
     String insert(@Param("jsonObject") String jsonObject);
 
     int findUser1(String username, String password);
+
+    User findByName(String username);
+
+    User findById(Integer id);
 }

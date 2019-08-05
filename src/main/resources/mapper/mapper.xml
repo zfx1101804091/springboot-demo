@@ -24,4 +24,12 @@
 		call insert_user(#{jsonObject});
 	</select>
 	
+	<select id="findByName" parameterType="java.lang.String" resultType="user">
+		select * from user1 where username = #{username};
+	</select>
+
+
+	<select id="findById" parameterType="java.lang.Integer" resultType="user">
+		select * from user1 where id = #{id};
+	</select>
 </mapper>
